@@ -2,7 +2,7 @@
 import sys
 import traceback
 from functools import wraps
-from pyrogram import Client
+from pyrogram import Client, SUPPORT_CHAT
 
 def split_limits(text):
     if len(text) < 2048:
