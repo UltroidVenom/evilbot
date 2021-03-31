@@ -1,30 +1,22 @@
-from pyrogram import Client, filters
+from pyrogram import Client
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-import os
-import sys
-from threading import Thread
-from pyrogram import idle, filters
-from pyrogram.handlers import MessageHandler
-from helpers.wrappers import errors, admins_only
+
 from config import BOT_NAME as bn
+from helpers.filters import other_filters2
 
 
 @Client.on_message(other_filters2)
 async def start(_, message: Message):
     await message.reply_text(
-       f"""🙃 Hi {message.from_user.first_name}!
-
-✨ I am **{bn}** Music Player. 
-
-🥳 I can play music in your Telegram Group's Voice Chat😉
+        f"""I am **{bn}** !!
 I let you play music in your group's voice chat 😉
 The commands I currently support are:
 ⚜️ /play - __Plays the replied audio file or YouTube video through link.__
 ⚜️ /pause - __Pause Voice Chat Music.__
 ⚜️ /resume - __Resume Voice Chat Music.__
 ⚜️ /skip - __Skips the current Music Playing In Voice Chat.__
-⚜️ /stop - __Clears The Queue as well as ends Voice Chat Music.__ 
-⚜️ Use these buttons below to know more. 👇""",
+⚜️ /stop - __Clears The Queue as well as ends Voice Chat Music.__
+        """,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
