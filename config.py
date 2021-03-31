@@ -16,8 +16,4 @@ DURATION_LIMIT = int(getenv("DURATION_LIMIT", "10"))
 
 SUDO_USERS = list(map(int, getenv("SUDO_USERS").split()))
 
-class Config:
-    BOT_TOKEN =os.environ.get("BOT_TOKEN",None)
-    API_ID = int(os.environ.get("API_ID",None))
-    API_HASH = os.environ.get("API_HASH",None)
-   
+
