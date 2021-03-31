@@ -4,7 +4,7 @@ from pyrogram.types import (
     InlineKeyboardMarkup
 )
 import youtube_dl
-import YoutubeSearch
+from youtube_search import YoutubeSearch
 import requests
 
 import os
