@@ -1,81 +1,44 @@
-from pyrogram import Client, filters
-from pyrogram.types import Message
+from os import path
 
-import tgcalls
-from converter import convert
-from youtube import download
-import sira
-from config import DURATION_LIMIT
-from helpers.wrappers import errors
+from pyrogram import Client
+from pyrogram.types import Message, Voice
+
+import callsmusic
+
+import converter
+from downloaders import youtube
+
+from config import BOT_NAME as bn, DURATION_LIMIT
+from helpers.filters import command, other_filters
+from helpers.decorators import errors
 from helpers.errors import DurationLimitError
+from helpers.gets import get_url, get_file_name
 
 
-@Client.on_message(
-    filters.command("play")
-    & filters.private
-    & ~ filters.edited
-)
-async def play_(client: Client, message: Message):
-    await message.reply_text("**êvilẞø†:** Sorry! I can only be used in groups. \nTry again in a group.")
-
-
-@Client.on_message(
-    filters.command("play")
-    & filters.group
-    & ~ filters.edited
-)
+@Client.on_message(command("play") & other_filters)
 @errors
-async def play(client: Client, message_: Message):
-    audio = (message_.reply_to_message.audio or message_.reply_to_message.voice) if message_.reply_to_message else None
-
-    res = await message_.reply_text("**êvilẞø†:** 🔄 Processing...")
+async def play(_, message: Message):
+    audio = (message.reply_to_message.audio or message.reply_to_message.voice) if message.reply_to_message else None
+    url = get_url(message)
 
     if audio:
         if round(audio.duration / 60) > DURATION_LIMIT:
             raise DurationLimitError(
-                f"**êvilẞø†:** Videos longer than {DURATION_LIMIT} minute(s) aren't allowed, the provided video is {audio.duration / 60} minute(s)"
+                f"**{bn} :-** 😕 Videos longer than {DURATION_LIMIT} minute(s) aren't allowed!\n🤐 The provided video is {audio.duration / 60} minute(s)"
             )
 
-        file_name = audio.file_id + audio.file_name.split(".")[-1]
-        file_path = await convert(await message_.reply_to_message.download(file_name))
+        file_name = get_file_name(audio)
+        file_path = await converter.convert(
+            (await message.reply_to_message.download(file_name))
+            if not path.isfile(path.join("downloads", file_name)) else file_name
+        )
+    elif url:
+        file_path = await converter.convert(youtube.download(url))
     else:
-        messages = [message_]
-        text = ""
-        offset = None
-        length = None
+        return await message.reply_text(f"**{bn} :-** 🙄 You did not give me anything to play!")
 
-        if message_.reply_to_message:
-            messages.append(message_.reply_to_message)
-
-        for message in messages:
-            if offset:
-                break
-
-            if message.entities:
-                for entity in message.entities:
-                    if entity.type == "url":
-                        text = message.text or message.caption
-                        offset, length = entity.offset, entity.length
-                        break
-
-        if offset == None:
-            await res.edit_text("**êvilẞø†:**❕ You did not give me anything to play.")
-            return
-
-        url = text[offset:offset+length]
-
-        file_path = await convert(download(url))
-
-    try:
-        is_playing = tgcalls.pytgcalls.is_playing(message_.chat.id)
-
-    except:
-        is_playing = False
-
-    if is_playing:
-        position = await sira.add(message_.chat.id, file_path)
-        await res.edit_text(f"**êvilẞø†:** #️⃣ Queued at position {position}.")
-
+    if message.chat.id in callsmusic.pytgcalls.active_calls:
+        await message.reply_text(f"**{bn} :-** 😉 Queued at position #{await callsmusic.queues.put(message.chat.id, file_path=file_path)} !")
     else:
-        await res.edit_text("**êvilẞø†:** ▶️ Playing...")
-        tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path, 48000)
+        callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
+        await message.reply_text(f"**{bn} :-** 🥳 Playing...")

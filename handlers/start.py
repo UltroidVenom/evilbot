@@ -1,27 +1,22 @@
-from pyrogram import Client, filters
+from pyrogram import Client
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-import os
-import sys
-from threading import Thread
-from pyrogram import idle, filters
-from pyrogram.handlers import MessageHandler
-from helpers.wrappers import errors, admins_only
+
+from config import BOT_NAME as bn
+from helpers.filters import other_filters2
 
 
-@Client.on_message(
-    filters.command("start")
-    & filters.private
-    & ~ filters.edited
-)
-async def start_(client: Client, message: Message):
+@Client.on_message(other_filters2)
+async def start(_, message: Message):
     await message.reply_text(
-       f"""🙃 Hi {message.from_user.first_name}!
-
-✨ I am êvilẞø† Music Player. 
-
-🥳 I can play music in your Telegram Group's Voice Chat😉
-
-⚜️ Use these buttons below to know more. 👇""",
+        f"""I am **{bn}** !!
+I let you play music in your group's voice chat 😉
+The commands I currently support are:
+⚜️ /play - __Plays the replied audio file or YouTube video through link.__
+⚜️ /pause - __Pause Voice Chat Music.__
+⚜️ /resume - __Resume Voice Chat Music.__
+⚜️ /skip - __Skips the current Music Playing In Voice Chat.__
+⚜️ /stop - __Clears The Queue as well as ends Voice Chat Music.__
+        """,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -38,29 +33,6 @@ async def start_(client: Client, message: Message):
                     )
                 ],
                 [
-                    InlineKeyboardButton(
-                        "❌ Close ❌", callback_data="close"
-                    )
-                ]
-            ]
-        )
-    )
-
-
-@Client.on_message(
-    filters.command("start")
-    & filters.group
-    & ~ filters.edited
-)
-async def start(client: Client, message: Message):
-    await message.reply_text(
-        "**êvilẞø†:** I'm Working!!!\nUse me in Inline to search for a YouTube Video/Music. \n**Happy Streaming**",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "🎶 Search 🎶", switch_inline_query_current_chat=""
-                    ),
                     InlineKeyboardButton(
                         "❌ Close ❌", callback_data="close"
                     )
