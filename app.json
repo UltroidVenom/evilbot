@@ -11,34 +11,35 @@
     "repository": "https://github.com/jattpawan/evilbot",
     "stack": "container",
     "env": {
-      "API_ID": {
-        "description": "Get this value from my.telegram.org!",
-        "value": ""
-      },
-      "API_HASH": {
-        "description": "Get this value from my.telegram.org! ",
-        "value": ""
-      },
-      "SESSION_NAME": {
-        "description": "Get this value from https://repl.it/@pawanjatt/evilmusicbot",
-        "value": ""
-      },
-      "BOT_TOKEN": {
-        "description": " Make a bot at http://telegram.dog/BotFather and get the token of your bot.",
-        "value": ""
-      },
-      "BOT_NAME": {
-        "description": " Add your bot name by default it is êvilẞø†.",
-        "value": "êvilẞø†"
-      },
-      "SUDO_USERS": {
-        "description": "List of ID of those who can pause, stop and clear queue,separated by space.",
-        "value": "1482443377"
-      },
-      "DURATION_LIMIT": {
-        "description": "Maximum duration of songs that users can request(in minutes).",
-        "value": "10",
-        "required": false
-      }
+    "SESSION_NAME": {
+      "description": "Pyrogram session string",
+      "required": true
+    },
+    "BOT_TOKEN": {
+      "description": "A bot token from @BotFather",
+      "required": true
+    },
+    "BOT_NAME": {
+      "description": "Your MusicPlayer Bot Name.",
+      "required": false,
+      "value": "Hêllẞø†"
+    },
+    "API_ID": {
+      "description": "App ID from my.telegram.org/apps",
+      "required": true
+    },
+    "API_HASH": {
+      "description": "App hash from my.telegram.org/apps",
+      "required": true
+    },
+    "SUDO_USERS": {
+      "description": "List of user IDs counted as admin everywhere (separated by space).",
+      "required": true
+    },
+    "DURATION_LIMIT": {
+      "description": "Max audio duration limit for downloads (minutes).",
+      "required": true,
+      "value": "10"
     }
+  }
 }
