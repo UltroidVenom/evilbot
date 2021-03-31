@@ -1,8 +1,9 @@
-py-tgcalls
 pyrogram
 TgCrypto
+py-tgcalls
 python-dotenv
 youtube_dl
-youtube_search_python==1.4.2
+youtube_search_python
+youtube-dl
 youtube_search
 requests
