@@ -2,7 +2,6 @@ py-tgcalls
 pyrogram
 TgCrypto
 python-dotenv
-telethon==1.21.1
 youtube_dl
 youtube_search_python==1.4.2
 youtube_search
