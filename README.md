@@ -2,7 +2,7 @@
 <h1 align="centre">🎶 Evil Music Bot 🎶</h1>
 
 <p align="center">
-  <img src="./resources/extras/1615044144821.jpg" alt="Evilmusicbot">
+  <img src="./resources/extras/1615044144821.png" alt="Evilmusicbot">
 </p>
 
 ## Requirements 📝
