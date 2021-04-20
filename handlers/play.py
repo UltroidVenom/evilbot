@@ -514,7 +514,7 @@ async def play(_, message: Message):
         await message.reply_photo(
         photo="final.png",
         reply_markup=keyboard,
-        caption="▶️ **Playing** here the song requested by {} via DaisyXmusic 😜".format(
+        caption="▶️ **Playing** here the song requested by {} via {bn} 😜".format(
         message.from_user.mention()
         ),
     )
@@ -724,7 +724,7 @@ async def jiosaavn(client: Client, message_: Message):
              [
                InlineKeyboardButton(
                    text="Join Updates Channel",
-                   url='https://t.me/daisyxupdates')
+                   url='https://t.me/BLAC_USERBOT_GROUP')
              ],
              [       
                InlineKeyboardButton(
