@@ -44,7 +44,6 @@ import json
 import wget
 chat_id = None
 
-
            
 
 
@@ -124,8 +123,11 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 
  
 
-@Client.on_message(command("playlist") & other_filters)
-@errors
+@Client.on_message(
+    filters.command("playlist")
+    & filters.group
+    & ~ filters.edited
+)
 async def playlist(client, message):
     global que
     queue = que.get(message.chat.id)
@@ -191,8 +193,11 @@ def r_ply(type_):
     )
     return mar
 
-@Client.on_message(command("current") & other_filters)
-@errors
+@Client.on_message(
+    filters.command("current")
+    & filters.group
+    & ~ filters.edited
+)
 async def ee(client, message):
     queue = que.get(message.chat.id)
     stats = updated_stats(message.chat, queue)
@@ -201,8 +206,11 @@ async def ee(client, message):
     else:
         await message.reply('No VC instances running in this chat')
 
-@Client.on_message(command("player") & other_filters)
-@errors
+@Client.on_message(
+    filters.command("player")
+    & filters.group
+    & ~ filters.edited
+)
 @authorized_users_only
 async def settings(client, message):
     playing = None
@@ -420,7 +428,7 @@ async def play(_, message: Message):
                    #print(e)
                    #await lel.edit(
                    #    f"<b>User {user.first_name} couldn't join your group! Make sure user is not banned in group."
-                   #    "\n\nOr manually add @DaisyXmusic to your Group and try again</b>",
+                   #    "\n\nOr manually add @BLAC_USERBOT_GROUP to your Group and try again</b>",
                    #)
                    pass
     try:
@@ -517,7 +525,7 @@ async def play(_, message: Message):
         await message.reply_photo(
         photo="final.png",
         reply_markup=keyboard,
-        caption="▶️ **Playing** here the song requested by {} via Evilmusicbot😜".format(
+        caption="▶️ **Playing** here the song requested by {} via {bn} 😜".format(
         message.from_user.mention()
         ),
     )
@@ -525,8 +533,11 @@ async def play(_, message: Message):
         return await lel.delete()
 
 
-@Client.on_message(command("dplay") & other_filters)
-@errors
+@Client.on_message(
+    filters.command("dplay")
+    & filters.group
+    & ~ filters.edited
+)
 async def deezer(client: Client, message_: Message):
     global que
     lel = await message_.reply("🔄 **Processing**")
@@ -556,7 +567,7 @@ async def deezer(client: Client, message_: Message):
                    #print(e)
                    #await lel.edit(
                    #    f"<b>User {user.first_name} couldn't join your group! Make sure user is not banned in group."
-                   #    "\n\nOr manually add @DaisyXmusic to your Group and try again</b>",
+                   #    "\n\nOr manually add @BLAC_USERBOT_GROUP to your Group and try again</b>",
                    #)
                    pass
     try:
@@ -627,7 +638,7 @@ async def deezer(client: Client, message_: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
-        await res.edit_text(f"Playing [{title}]({url}) Via Deezer")
+        await res.edit_text(f"✯**{bn}**✯= #️⃣ Queued at position {position}")
     else:
         await res.edit_text("✯**{bn}**✯=▶️ Playing.....")
         chat_id = message_.chat.id
@@ -646,13 +657,16 @@ async def deezer(client: Client, message_: Message):
         chat_id=message_.chat.id,
         reply_markup=keyboard,
         photo="final.png",
-        caption=f"✯**{bn}**✯= #️⃣ Queued at position {position}.)."
+        caption=f"Playing [{title}]({url}) Via Deezer"
     ) 
     os.remove("final.png")
 
 
-@Client.on_message(command("splay") & other_filters)
-@errors
+@Client.on_message(
+    filters.command("splay")
+    & filters.group
+    & ~ filters.edited
+)
 async def jiosaavn(client: Client, message_: Message):
     global que
     lel = await message_.reply("🔄 **Processing**")
@@ -683,7 +697,7 @@ async def jiosaavn(client: Client, message_: Message):
                    #print(e)
                    #await lel.edit(
                    #    f"<b>User {user.first_name} couldn't join your group! Make sure user is not banned in group."
-                   #    "\n\nOr manually add hh to your Group and try again</b>",
+                   #    "\n\nOr manually add @BLAC_USERBOT_GROUP to your Group and try again</b>",
                    #)
                    pass
     try:
@@ -727,7 +741,7 @@ async def jiosaavn(client: Client, message_: Message):
              [
                InlineKeyboardButton(
                    text="Join Updates Channel",
-                   url='https://t.me/BLAC_USERBOT_GROUP')
+                   url='https://t.me/daisyxupdates')
              ],
              [       
                InlineKeyboardButton(
@@ -777,3 +791,5 @@ async def jiosaavn(client: Client, message_: Message):
         
     )
     os.remove("final.png")
+
+# Have u read all. If read RESPECT :-)
