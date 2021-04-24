@@ -5,8 +5,7 @@ from config import BOT_NAME as bn
 from helpers.filters import other_filters2
 
 
-@Client.on_message(other_filters2)
-async def start(_, message: Message):
+@Client.on_message(filters.command("start") & filters.private & ~filters.channel)
     await message.reply_text(
         f"""I am **{bn}** !!
 I let you play music in your group's voice chat 😉
@@ -40,3 +39,18 @@ The commands I currently support are:
             ]
         )
     )
+
+@Client.on_message(filters.command("start") & ~filters.private & ~filters.channel)
+async def gstart(_, message: Message):
+      await message.reply_text("""**🔴 Music player is online**""",
+      reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "🎙️ Support Group 🎙️", url="https://t.me/BLAC_USERBOT_GROUP")
+                ]
+            ]
+        )
+   )
+
+
