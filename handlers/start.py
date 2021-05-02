@@ -14,12 +14,12 @@ I let you play music in your group's voice chat 😉
 Don't Forget to add my assistant in your group
 Don't Forget To Make Admin Me And My assistant With Manage Voice Chat Permission
 The commands I currently support are:
-⚜️ /play - __Plays the replied audio file or YouTube video through link.__
+⚜️ /play - __Plays the YouTube video through link.__
+⚜️ /play (song name) - __Play Song Directly From YouTube.__
 ⚜️ /pause - __Pause Voice Chat Music.__
 ⚜️ /resume - __Resume Voice Chat Music.__
 ⚜️ /skip - __Skips the current Music Playing In Voice Chat.__
-⚜️ /stop - __Clears The Queue as well as ends Voice Chat Music.__
-⚜️ /play (song name) - __Play Song Directly From YouTube
+⚜️ /end - __Clears The Queue as well as ends Voice Chat Music.__
                """,
         reply_markup=InlineKeyboardMarkup(
             [
