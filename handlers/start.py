@@ -33,7 +33,7 @@ The commands I currently support are:
                         "💬 Group 💬", url="https://t.me/CrackMonkeyChats"
                     ),
                     InlineKeyboardButton(
-                        "📣 Channel 📣", url="https://t.me/BLAC_USERBOT"
+                        "📣 Channel 📣", url="https://t.me/CrackMonkey"
                     )
                 ],
                 [
