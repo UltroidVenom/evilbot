@@ -25,7 +25,7 @@ The commands I currently support are:
             [
                 [
                     InlineKeyboardButton(
-                        "Add ʋɛռօʍ ʍʊֆɨƈ ɮօȶ to your group", url="https://t.me/CrackMonkey)
+                        "Add ʋɛռօʍ ʍʊֆɨƈ ɮօȶ to your group", url="https://t.me/CrackMonkey")
                 ],
                 [
                     InlineKeyboardButton(
