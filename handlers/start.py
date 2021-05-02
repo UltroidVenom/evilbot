@@ -25,7 +25,7 @@ The commands I currently support are:
             [
                 [
                     InlineKeyboardButton(
-                        "Add ʋɛռօʍ ʍʊֆɨƈ ɮօȶ to your group", url="https://t.me/R2K_VENOM"
+                        "Add ʋɛռօʍ ʍʊֆɨƈ ɮօȶ to your group", url="t.me/{}?startgroup=true".format(context.bot.username)
                     )
                 ],
                 [
