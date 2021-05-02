@@ -25,8 +25,8 @@ The commands I currently support are:
             [
                 [
                     InlineKeyboardButton(
-                        "Add ʋɛռօʍ ʍʊֆɨƈ ɮօȶ to your group", url="t.me/{}?startgroup=true".format(context.bot.username)
-                    )
+                        "Add ʋɛռօʍ ʍʊֆɨƈ ɮօȶ to your group", url="t.me/{}?startgroup=true".format(
+                                context.bot.username))
                 ],
                 [
                     InlineKeyboardButton(
@@ -52,7 +52,7 @@ async def gstart(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "🎙️ Support Group 🎙️", url="https://t.me/CrackMonkeyChats")
+                        "🎙️ Support Group 🎙️", url="https://t.me/BLAC_USERBOT_GROUP")
                 ]
             ]
         )
