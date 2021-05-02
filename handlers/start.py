@@ -18,27 +18,28 @@ The commands I currently support are:
 ⚜️ /pause - __Pause Voice Chat Music.__
 ⚜️ /resume - __Resume Voice Chat Music.__
 ⚜️ /skip - __Skips the current Music Playing In Voice Chat.__
-⚜️ /stop - __Clears The Queue as well as ends Voice Chat Music.__
+⚜️ /end - __Clears The Queue as well as ends Voice Chat Music.__
 ⚜️ /play (song name) - __Play Song Directly From YouTube
                """,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "📔 Source Code 📔", url="https://github.com/jattpawan/evilbot"
+                        "Add ʋɛռօʍ ʍʊֆɨƈ ɮօȶ to your group", url="t.me/{}?startgroup=true".format(
+                                context.bot.username)
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        "💬 Group 💬", url="https://t.me/BLAC_USERBOT_GROUP"
+                        "💬 Group 💬", url="https://t.me/CrackMonkeyChats"
                     ),
                     InlineKeyboardButton(
-                        "📣 Channel 📣", url="https://t.me/BLAC_USERBOT"
+                        "📣 Channel 📣", url="https://t.me/CrackMonkey"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        "❌ Close ❌", callback_data="close"
+                        "ʍʏ ʍǟֆȶɛʀ", url="https://t.me/R2K_VENOM"
                     )
                 ]
             ]
